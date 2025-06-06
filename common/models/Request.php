@@ -133,6 +133,15 @@ class Request extends \yii\db\ActiveRecord
      */
     public function isIncomplete(): bool
     {
-        ! return in_array(static::find($this->id)->one()->status, static::STATUS_NOT_INCOMPLETE);
+        return ! in_array(static::find($this->id)?->one()->status, static::STATUS_NOT_INCOMPLETE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeSave($insert)
+    {
+        return !! parent::beforeSave($insert)
+            && in_array(static::find($this->user_id)->one()?->status, ['approved',]);
     }
 }
