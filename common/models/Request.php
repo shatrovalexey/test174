@@ -129,7 +129,7 @@ class Request extends \yii\db\ActiveRecord
      */
     public function isIncomplete(): bool
     {
-        return ! in_array(static::find($this->id)?->one()->status, ['declined', 'approved', 'failure', 'pending',]);
+        return ! in_array(static::find($this->id)->one()?->status, ['declined', 'approved', 'failure', 'pending',]);
     }
 
     /**
