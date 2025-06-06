@@ -22,10 +22,6 @@ use yii\db\ActiveRecord;
 class Request extends \yii\db\ActiveRecord
 {
     /**
-    * @const STATUS_NOT_INCOMPLETE - список статусов, которые не означают незавершённость заявки
-    */
-    const STATUS_NOT_INCOMPLETE = ['declined', 'approved', 'failure', 'pending',];
-    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -133,7 +129,7 @@ class Request extends \yii\db\ActiveRecord
      */
     public function isIncomplete(): bool
     {
-        return ! in_array(static::find($this->id)?->one()->status, static::STATUS_NOT_INCOMPLETE);
+        return ! in_array(static::find($this->id)?->one()->status, ['declined', 'approved', 'failure', 'pending',]);
     }
 
     /**
@@ -142,6 +138,6 @@ class Request extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         return !! parent::beforeSave($insert)
-            && in_array(static::find($this->user_id)->one()?->status, ['approved',]);
+            && ! in_array(static::find($this->user_id)->one()?->status, ['approved',]);
     }
 }
