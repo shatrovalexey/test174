@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "e1049591-5401-4b8d-84ea-ff2e8a885f4e",
+		"name": "Тест174",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40039781",
+		"_collection_link": "https://local8-5977.postman.co/workspace/Local-Workspace~24bf8700-ad76-494d-8236-636eeeb9a5e4/collection/40039781-e1049591-5401-4b8d-84ea-ff2e8a885f4e?action=share&source=collection_link&creator=40039781"
+	},
+	"item": [
+		{
+			"name": "Создать заявку",
+			"protocolProfileBehavior": {
+				"protocolVersion": "http2"
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user_id\": 1,\r\n  \"amount\": 3000,\r\n  \"term\": 30\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/requests",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запуск обработки заявок",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "?delay=5",
+					"query": [
+						{
+							"key": "delay",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
